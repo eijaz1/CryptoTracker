@@ -1,3 +1,3 @@
 # CryptoTracker
 
-![](screenshot.png)
+![](screenshot.jpg)
