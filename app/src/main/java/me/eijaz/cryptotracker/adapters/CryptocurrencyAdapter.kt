@@ -14,17 +14,8 @@ import me.eijaz.cryptotracker.utils.Constants
 
 class CryptocurrencyAdapter(val cryptocurrencies: List<Cryptocurrency>): RecyclerView.Adapter<CryptocurrencyViewHolder>() {
 
-    /**
-     * Adapter takes in list of model objects
-     */
-
-
-
     override fun getItemCount(): Int {
 
-        /**
-         *  lets the Adapter know how many items to display
-         */
         return cryptocurrencies.count()
     }
 
@@ -35,21 +26,10 @@ class CryptocurrencyAdapter(val cryptocurrencies: List<Cryptocurrency>): Recycle
 
     }
 
-
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: CryptocurrencyViewHolder?, position: Int) {
 
-
-        /**
-         *  coin - A single CryptoModel object from list
-         */
-
         val crypto = cryptocurrencies.get(position)
-
-        /**
-         * get CryptoModel data and bind them to corresponding
-         * viewholder widgets(text view, imageview etc)
-         */
 
         holder?.coinName?.text = crypto.name
         holder?.coinSymbol?.text = crypto.symbol
@@ -57,17 +37,7 @@ class CryptocurrencyAdapter(val cryptocurrencies: List<Cryptocurrency>): Recycle
         holder?.twentyFourHourChange?.text = "24h: " + crypto.percent_change_24h+"%"
         holder?.sevenDayChange?.text = "7d: " + crypto.percent_change_7d+"%"
 
-        /**
-         *  Picasso for async image loading
-         */
-
         Picasso.with(holder?.itemView?.context).load(Constants.LOGOURL.LOGOURL + crypto.symbol.toLowerCase()+".png").into(holder?.coinIcon)
-
-
-        /**
-         *  Set color of percentage change textview to reflect
-         *  if the percentage change was negative or positive
-         */
 
         if(crypto.percent_change_24h.contains("-")){
             holder?.twentyFourHourChange?.setTextColor(Color.parseColor("#ff0000"))
@@ -86,18 +56,13 @@ class CryptocurrencyAdapter(val cryptocurrencies: List<Cryptocurrency>): Recycle
 
 }
 
-
 class CryptocurrencyViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-    /**
-     * ViewHolder items (textviews, imageviews) from the crypto_layout.xml
-     */
     val coinIcon = view.iv_crypto_logo
     val coinSymbol = view.tv_crypto_symbol
     val coinName = view.tv_crypto_name
     val twentyFourHourChange = view.tv_crypto_24hr
     val sevenDayChange = view.tv_crypto_7d
     val coinPrice = view.tv_crypto_price
-
 
 }
